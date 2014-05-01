@@ -7,13 +7,14 @@ using System.Threading.Tasks;
 namespace JiraUtils.Entities
 {
     /// <summary>
-    /// Representation of Jira Issue
+    /// Representation of a jira project
     /// </summary>
-    public class Issue
+    public class Project
     {
         public int Id { get; set; }
-        public string Key { get; set; }
         public string Self { get; set; }
-        public IssueFields Fields { get; set; }
+        public string Name { get; set; }
+        public string Key { get; set; }
+
     }
 }
