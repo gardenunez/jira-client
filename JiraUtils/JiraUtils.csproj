@@ -44,6 +44,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\Author.cs" />
+    <Compile Include="Entities\Comment.cs" />
+    <Compile Include="Entities\IssueComment.cs" />
     <Compile Include="Entities\IssueFields.cs" />
     <Compile Include="Entities\Issue.cs" />
     <Compile Include="Entities\IssueType.cs" />

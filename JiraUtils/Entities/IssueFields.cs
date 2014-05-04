@@ -17,6 +17,7 @@ namespace JiraUtils.Entities
         public IssueType IssueType { get; set; }
         public Project Project { get; set; }
         public IssueWorkLog Worklog { get; set; }
+        public IssueComment Comment { get; set; }
 
         public DateTime Created { get; set; }
         public DateTime Updated { get; set; }
