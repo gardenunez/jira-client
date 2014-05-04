@@ -15,5 +15,6 @@ namespace JiraUtils.Entities
         public string Key { get; set; }
         public string Self { get; set; }
         public IssueFields Fields { get; set; }
+      
     }
 }
