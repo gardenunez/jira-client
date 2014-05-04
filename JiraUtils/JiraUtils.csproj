@@ -49,7 +49,9 @@
     <Compile Include="Entities\IssueFields.cs" />
     <Compile Include="Entities\Issue.cs" />
     <Compile Include="Entities\IssueType.cs" />
+    <Compile Include="Entities\IssueWatches.cs" />
     <Compile Include="Entities\IssueWorkLog.cs" />
+    <Compile Include="Entities\Priority.cs" />
     <Compile Include="Entities\Project.cs" />
     <Compile Include="Entities\WorkLog.cs" />
     <Compile Include="JiraMiscUtils.cs" />
