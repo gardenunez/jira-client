@@ -22,9 +22,7 @@ namespace JiraUtils
         public Issue GetJiraIssueByKey(string baseUrl, string key, string user, string password)
         {
             WebClient client = new WebClient();
-            // create credentials, base64 encode of username:password
             string credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes(string.Format("{0}:{1}", user, password)));
-            // Inject this string as the Authorization header
             client.Headers[HttpRequestHeader.Authorization] = string.Format("Basic {0}", credentials);
             string url = string.Format("{0}/issue/{1}", baseUrl, key);
             var jsonResponse = client.DownloadString(url);

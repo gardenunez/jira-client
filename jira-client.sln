@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30324.0
+VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JiraUtils", "JiraUtils\JiraUtils.csproj", "{063D267A-58B1-4172-BC5C-FE0754B20CC1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JiraClient", "JiraClient\JiraClient.csproj", "{20009384-C9E0-481D-A541-702BB953963B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JiraConsoleClient", "JiraClient\JiraConsoleClient.csproj", "{20009384-C9E0-481D-A541-702BB953963B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
