@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using JiraUtils;
 
 namespace JiraClient
 {
@@ -14,14 +15,16 @@ namespace JiraClient
     {
         static void Main(string[] args)
         {
-            List<string> sources = new List<string>() { "TES-1", "TES-2", "TES-3" };
+            List<string> sources = new List<string>() { "DEMO-1", "DEMO-2", "DEMO-3" };
+            JiraService jiraService = new JiraService();
             string user = ConfigurationManager.AppSettings[Constants.USER_KEY];
             string passwd = ConfigurationManager.AppSettings[Constants.PASS_KEY];
             string baseUrl = ConfigurationManager.AppSettings[Constants.BASEURL_KEY];
 
             foreach (string current in sources)
             {
-                Issue issue = JiraUtils.JiraMiscUtils.GetJiraIssueByKey(baseUrl, current, user, passwd);
+
+                Issue issue = jiraService.GetJiraIssueByKey(baseUrl, current);
                 Console.WriteLine("ID: {0}  KEY: {1}", issue.Id, issue.Key);
                 Console.WriteLine("Description: {0}",issue.Fields.Description);
                 Console.WriteLine("Created: {0}", issue.Fields.Created);

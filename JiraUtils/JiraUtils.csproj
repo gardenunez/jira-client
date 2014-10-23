@@ -54,7 +54,7 @@
     <Compile Include="Entities\Priority.cs" />
     <Compile Include="Entities\Project.cs" />
     <Compile Include="Entities\WorkLog.cs" />
-    <Compile Include="JiraMiscUtils.cs" />
+    <Compile Include="JiraService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
