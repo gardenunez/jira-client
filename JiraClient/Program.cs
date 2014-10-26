@@ -16,15 +16,15 @@ namespace JiraClient
         static void Main(string[] args)
         {
             List<string> sources = new List<string>() { "DEMO-1", "DEMO-2", "DEMO-3" };
-            JiraService jiraService = new JiraService();
             string user = ConfigurationManager.AppSettings[Constants.USER_KEY];
             string passwd = ConfigurationManager.AppSettings[Constants.PASS_KEY];
             string baseUrl = ConfigurationManager.AppSettings[Constants.BASEURL_KEY];
-
+            JiraService jiraService = new JiraService(baseUrl);
+            
             foreach (string current in sources)
             {
 
-                Issue issue = jiraService.GetJiraIssueByKey(baseUrl, current);
+                Issue issue = jiraService.GetJiraIssueByIdOrKey(current);
                 Console.WriteLine("ID: {0}  KEY: {1}", issue.Id, issue.Key);
                 Console.WriteLine("Description: {0}",issue.Fields.Description);
                 Console.WriteLine("Created: {0}", issue.Fields.Created);
