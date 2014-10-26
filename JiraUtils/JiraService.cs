@@ -51,6 +51,21 @@ namespace JiraUtils
         }
 
         /// <summary>
+        /// Get issues of sprint when use Jira Agile
+        /// </summary>
+        /// <param name="sprintName">Name of the sprint</param>
+        /// <returns></returns>
+        public IEnumerable<Issue> GetIssuesBySprint(string sprintName)
+        {
+            WebClient client = new WebClient();
+            string url = string.Format("{0}/search?jql=Sprint=\"{1}\"", this.ServerUrl, sprintName);
+            var jsonResponse = client.DownloadString(url);
+            dynamic response = JsonConvert.DeserializeObject(jsonResponse);
+            var issues = response["issues"].ToObject<IEnumerable<Issue>>();
+            return issues;
+        }
+
+        /// <summary>
         /// Get Jira Project by id
         /// </summary>
         /// <param name="id">project id</param>

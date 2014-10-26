@@ -13,6 +13,20 @@ namespace JiraClient
 {
     class Program
     {
+        static void PrintIssue(Issue issue)
+        {
+            Console.WriteLine("ID: {0}  KEY: {1}", issue.Id, issue.Key);
+            Console.WriteLine("Description: {0}", issue.Fields.Description);
+            Console.WriteLine("Created: {0}", issue.Fields.Created);
+            Console.WriteLine("Updated: {0}", issue.Fields.Updated);
+            Console.WriteLine("DueDate: {0}", issue.Fields.DueDate);
+            Console.WriteLine("LastViewed: {0}", issue.Fields.LastViewed);
+            Console.WriteLine("Type: {0}", issue.Fields.IssueType.Name);
+            Console.WriteLine("Project: {0}", issue.Fields.Project.Name);
+            Console.WriteLine("*********************************");
+
+                
+        }
         static void Main(string[] args)
         {
             List<string> sources = new List<string>() { "DEMO-1", "DEMO-2", "DEMO-3" };
@@ -23,18 +37,16 @@ namespace JiraClient
             
             foreach (string current in sources)
             {
-
                 Issue issue = jiraService.GetJiraIssueByIdOrKey(current);
-                Console.WriteLine("ID: {0}  KEY: {1}", issue.Id, issue.Key);
-                Console.WriteLine("Description: {0}",issue.Fields.Description);
-                Console.WriteLine("Created: {0}", issue.Fields.Created);
-                Console.WriteLine("Updated: {0}", issue.Fields.Updated);
-                Console.WriteLine("DueDate: {0}", issue.Fields.DueDate);
-                Console.WriteLine("LastViewed: {0}", issue.Fields.LastViewed);
-                Console.WriteLine("Type: {0}", issue.Fields.IssueType.Name);
-                Console.WriteLine("Project: {0}", issue.Fields.Project.Name);
-                Console.WriteLine("*********************************");
+                PrintIssue(issue);
             }
+
+            var issues = jiraService.GetIssuesBySprint("35mm Capture - 2.7.1");
+            foreach (var issue in issues)
+            {
+                PrintIssue(issue);
+            }
+
             Console.Read();
         }
 

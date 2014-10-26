@@ -21,5 +21,17 @@ namespace JiraClient.Web.API.Controllers
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, issue, "application/json");
             return response;
         }
+
+        [AllowAnonymous]
+        [HttpGet]
+        public HttpResponseMessage GetIssuesBySprint(string sprint)
+        {
+            string serverUrl = "http://jira.atlassian.com/rest/api/2";
+            JiraService service = new JiraService(serverUrl);
+            IEnumerable<Issue> issues = service.GetIssuesBySprint(sprint);
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, issues, "application/json");
+            return response;
+        }
+
     }
 }
