@@ -50,6 +50,20 @@ namespace JiraUtils
 
         }
 
+        /// <summary>
+        /// Get Jira Project by id
+        /// </summary>
+        /// <param name="id">project id</param>
+        /// <returns></returns>
+        public Project GetProjectById(int id)
+        {
+            WebClient client = new WebClient();
+            string url = string.Format("{0}/project/{1}", this.ServerUrl, id);
+            var jsonResponse = client.DownloadString(url);
+            Project project = JsonConvert.DeserializeObject<Project>(jsonResponse);
+            return project;
+        }
+
         public JiraService(string serverUrl)
         {
             this.ServerUrl = serverUrl;
