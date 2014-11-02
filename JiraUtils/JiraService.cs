@@ -23,16 +23,8 @@ namespace JiraUtils
         /// <returns></returns>
         public Issue GetJiraIssueByIdOrKey(string key)
         {
-            WebClient client = new WebClient();
-            string user = ConfigurationManager.AppSettings["user"];
-            string password = ConfigurationManager.AppSettings["pwd"];
-            if (!string.IsNullOrEmpty(user) && !string.IsNullOrEmpty(password))
-            {
-                string credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes(string.Format("{0}:{1}", user, password)));
-                client.Headers[HttpRequestHeader.Authorization] = string.Format("Basic {0}", credentials);
-            }
             string url = string.Format("{0}/issue/{1}", this.ServerUrl, key);
-            var jsonResponse = client.DownloadString(url);
+            var jsonResponse = MakeRequest(url);
             Issue issue = JsonConvert.DeserializeObject<Issue>(jsonResponse);
             return issue;
 
@@ -45,9 +37,8 @@ namespace JiraUtils
         /// <returns></returns>
         public IEnumerable<Issue> GetIssuesBySprint(string sprintName)
         {
-            WebClient client = new WebClient();
             string url = string.Format("{0}/search?jql=Sprint=\"{1}\"", this.ServerUrl, sprintName);
-            var jsonResponse = client.DownloadString(url);
+            string jsonResponse = MakeRequest(url);
             dynamic response = JsonConvert.DeserializeObject(jsonResponse);
             var issues = response["issues"].ToObject<IEnumerable<Issue>>();
             return issues;
@@ -60,11 +51,23 @@ namespace JiraUtils
         /// <returns></returns>
         public Project GetProjectById(int id)
         {
-            WebClient client = new WebClient();
             string url = string.Format("{0}/project/{1}", this.ServerUrl, id);
-            var jsonResponse = client.DownloadString(url);
+            string jsonResponse = MakeRequest(url);
             Project project = JsonConvert.DeserializeObject<Project>(jsonResponse);
             return project;
+        }
+
+        private string MakeRequest(string url)
+        {
+            WebClient client = new WebClient();
+            string user = ConfigurationManager.AppSettings["user"];
+            string password = ConfigurationManager.AppSettings["pwd"];
+            if (!string.IsNullOrEmpty(user) && !string.IsNullOrEmpty(password))
+            {
+                string credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes(string.Format("{0}:{1}", user, password)));
+                client.Headers[HttpRequestHeader.Authorization] = string.Format("Basic {0}", credentials);
+            }
+            return client.DownloadString(url);
         }
 
         public JiraService(string serverUrl)
