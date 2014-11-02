@@ -28,6 +28,16 @@ namespace JiraClient.Web.API
             );
 
             config.Routes.MapHttpRoute(
+                name: "issues_by_sprint",
+                routeTemplate: API_PATH + "issues/",
+                defaults: new
+                {
+                    controller = "Issues",
+                    action = "GetIssuesBySprint"
+                }
+            );
+
+            config.Routes.MapHttpRoute(
                 name: "project_by_id",
                 routeTemplate: API_PATH + "projects/{id}",
                 defaults: new
